@@ -1,0 +1,6 @@
+{
+	"files": [],
+	"references": [
+		{ "path": "./utils/tsconfig.build.json" },
+	]
+}
