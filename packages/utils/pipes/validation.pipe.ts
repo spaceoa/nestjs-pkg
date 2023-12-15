@@ -12,7 +12,7 @@ export class ValidatePipe implements PipeTransform<any> {
       const err = errors[0];
       const code = 'PARAMS';
       const msg = `【${err.property}】${Object.values(err.constraints)[0]}`;
-      throw new BadReqException(msg, {code});
+      throw new BadReqException(code, msg);
     }
     return value;
   }
