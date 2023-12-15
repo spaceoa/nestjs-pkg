@@ -6,28 +6,27 @@ export interface ErrorMsg {
 export class Exception extends Error {
   errorCode: string;
   httpStatus: number;
-  constructor(status:number,opts?:ErrorMsg) {
-    super(opts.msg);
+  constructor(code:string,msg:string,status=0) {
+    super(msg);
     this.httpStatus = status;
-    this.errorCode = opts.code;
+    this.errorCode = code;
   }
 }
 
 export class BadReqException extends Exception {
-  constructor(msg:string,opts?:{code?:string}) {
-    const code = opts?.code || "BAD_REQUEST"
-    super(400,{code,msg})
+  constructor(code:string,msg:string) {
+    super(code,msg,400);
   }
 }
 
 export class AuthException extends Exception {
   constructor() {
-    super(401,{code:"UNAUTHORIZED",msg:"未授权"})
+    super("AUTH_FAILED","认证失败",401);
   }
 }
 
 export class ForbiddenException extends Exception {
   constructor() {
-    super(403,{code:"FORBIDDEN",msg:"禁止访问"})
+    super("FORBIDDEN","禁止访问",403);
   }
 }
