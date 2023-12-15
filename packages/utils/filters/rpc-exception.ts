@@ -25,17 +25,17 @@ export class GrpcExceptionFilter extends BaseRpcExceptionFilter {
   catch(exception: any, host: ArgumentsHost) {
     if (exception instanceof AuthException) {
       return throwError(() => {
-        return { code: 16, message: exception.message };
+        return { code: 16, message: exception.errorCode };
       });
     }
     if (exception instanceof Exception) {
       return throwError(() => {
-        return { code: 3, message: exception.message };
+        return { code: 3, message: exception.errorCode };
       });
     }
     if (exception instanceof ForbiddenException) {
       return throwError(() => {
-        return { code: 7, message: exception.message };
+        return { code: 7, message: exception.errorCode };
       });
     }
     return throwError(() => {
